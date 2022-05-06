@@ -26,5 +26,5 @@ jobs:
           secretAccessKey: ${{ secrets.SECRET_ACCESS_KEY }}
           bucket: ${{ secrets.BUCKET }}
           path: "./container/latest"
-          clear: true
+          clear: false
 
