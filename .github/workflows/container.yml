@@ -21,7 +21,7 @@ jobs:
       - run: npm run build
 
       - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 --endpoint-url=https://storage.yandexcloud.net' sync dist s3://${{ secrets.BUCKET }}/container/latest
+      - run: aws s3 --endpoint-url=https://storage.yandexcloud.net sync dist s3://${{ secrets.BUCKET }}/container/latest
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
