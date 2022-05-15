@@ -1,6 +1,7 @@
 import {createGenerateClassName, StylesProvider} from "@material-ui/core";
 import React from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {AuthApp} from "./components/authApp";
 import Header from "./components/Header";
 import {MarketingApp} from "./components/marketingApp";
 
@@ -14,7 +15,10 @@ export const App = () => {
             <BrowserRouter>
                 <div>
                     <Header />
-                    <MarketingApp />
+                    <Switch>
+                        <Route path="/auth" component={AuthApp} />
+                        <Route path="/" component={MarketingApp} />
+                    </Switch>
                 </div>
             </BrowserRouter>
         </StylesProvider>

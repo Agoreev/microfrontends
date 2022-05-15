@@ -1,0 +1,28 @@
+name: deploy-auth
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/auth/**'
+
+defaults:
+  run:
+    working-directory: packages/auth
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
+
+      - uses: shinyinc/action-aws-cli@v1.2
+      - run: aws s3 --endpoint-url=https://storage.yandexcloud.net sync dist s3://${{ secrets.BUCKET }}/auth/latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "ru-central1"
